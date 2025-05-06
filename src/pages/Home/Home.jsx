@@ -4,8 +4,24 @@ import { CoinContext } from '../../context/CoinContext'
 
 const Home = () => {
 
-    const {allCoin,currency} =useContext(CoinContext);
+    const {allCoin,currency} =useContext(CoinContext); 
     const [displayCoin,setDisplayCoin]=useState([]);
+
+    const [input,setInput]=useState("")
+     
+    const inputHandler=(e)=>{
+        setInput(e.target.value)
+        if(e.target.value === ""){
+            setDisplayCoin(allCoin)
+        }
+    }
+    const searchHandler=async(e)=>{
+        e.preventDefault();
+        const coins = await allCoin.filter((item)=>{
+            return item.name.toLowerCase().includes(input.toLowerCase())
+        })
+        setDisplayCoin(coins)
+    }
 
     useEffect(()=>{
         setDisplayCoin(allCoin)
@@ -16,8 +32,15 @@ const Home = () => {
         <div className="hero">
             <h1>Your Smart Gateway <br /> to Crypto Insights</h1>
             <p>Explore market trends, price changes, and crypto updates in one view.</p>
-            <form>
-                <input type="text" placeholder='Search crypto..'/>
+            <form onSubmit={searchHandler}>
+                <input list='coinlist' value={input} onChange={inputHandler} type="text" placeholder='Search crypto..' required/>
+                
+                <datalist id='coinlist'>
+                {allCoin.map((item,index)=>(
+                    <option key ={index} value={item.name}/>
+                ))}
+                </datalist> {/* suggestion dropdown ke liye */}
+
                 <button type='submit'>Explore</button>
             </form>
         </div>
