@@ -1,0 +1,19 @@
+.loader{
+    display: grid;
+    place-self: center;
+    min-height: 80vh;
+}
+.spin{
+    width: 65px;
+    height: 65px;
+    place-self: center;
+    border: 5px solid #bdbdbd;
+    border-radius: 50%;
+    border-top-color: #007dc6;
+    animation: rotate 2s infinite; 
+}
+@keyframes rotate{
+    100%{
+        transform: rotate(360deg);
+    }
+}
