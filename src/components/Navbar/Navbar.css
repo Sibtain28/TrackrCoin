@@ -20,7 +20,7 @@
 .nav-right{
     display: flex;
     align-items: center;
-    gap: max(1vw,12px);
+    gap: max(2vw,12px);
 }
 .navbar select{
     padding: 5px 8px;
@@ -44,9 +44,10 @@
     background:white;
     border: none;
     cursor: pointer;
+    margin-top: 12px;
 }
 .navbar button img{
-    width: 17px;
+    width: 20px;
 }
 
 @media (max-width:900px){

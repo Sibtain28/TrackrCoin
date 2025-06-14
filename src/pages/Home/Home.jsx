@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 const Home = () => {
 
     const {allCoin,currency} =useContext(CoinContext); 
-    const [displayCoin,setDisplayCoin]=useState([]);
+    const [displayCoin,setDisplayCoin]=useState([]); //ye filter coins ke liye
 
     const [input,setInput]=useState("")
      
