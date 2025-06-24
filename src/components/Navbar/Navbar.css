@@ -13,6 +13,7 @@
     display: flex;
     gap: 40px;
     list-style: none;
+    margin-right:100px ;
 }
 .navbar li{
     cursor: pointer;
