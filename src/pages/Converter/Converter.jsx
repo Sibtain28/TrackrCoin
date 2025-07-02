@@ -26,7 +26,14 @@ const Converter = () => {
         );
         const data = await res.json();
         const price = data[fromCrypto][toFiat];
-        setConverted((amount * price).toFixed(2));
+
+        const numAmount = parseFloat(amount);
+        if (isNaN(numAmount)) {
+          setConverted(null);
+          return;
+        }
+
+        setConverted((numAmount * price).toFixed(2));
       } catch (error) {
         console.error('API error:', error);
         setConverted(null);
@@ -71,11 +78,9 @@ const Converter = () => {
 
         <div className="result">
           {converted !== null ? (
-            <>
-              <p>
-                {amount} {fromCrypto.toUpperCase()} = <strong>{converted} {toFiat.toUpperCase()}</strong>
-              </p>
-            </>
+            <p>
+              {amount} {fromCrypto.toUpperCase()} = <strong>{converted} {toFiat.toUpperCase()}</strong>
+            </p>
           ) : (
             <p>Loading...</p>
           )}
